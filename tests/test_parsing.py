@@ -1,6 +1,6 @@
 import pytest
 
-from pyaddic7ed.parsing import (
+from pyaddic7.parsing import (
     clean_version_title,
     extract_distribution,
     extract_team,

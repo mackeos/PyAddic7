@@ -1,19 +1,34 @@
-# pyaddic7ed
+# PyAddic7
 
 Python API to search and download subtitles from [addic7ed.com](https://www.addic7ed.com).
 
-`pyaddic7ed` is a full-featured Python port of the two main upstream libraries:
+Published on PyPI as **`pyaddic7`** (formerly `pyaddic7ed`). Both names install
+the same package and both import names work:
+
+```bash
+pip install pyaddic7     # canonical name
+pip install pyaddic7ed   # compatibility alias - same package
+```
+
+```python
+import pyaddic7          # canonical import
+import pyaddic7ed        # compatibility alias - same API objects
+```
+
+`PyAddic7` is a full-featured Python port of the two main upstream libraries:
 
 | Upstream | Language | What it contributed |
 | --- | --- | --- |
 | [matcornic/addic7ed](https://github.com/matcornic/addic7ed) | Go | search by video file name, best-version selection via Jaro-Winkler scoring, filters and grouping, `is_updated`/`is_original` |
 | [same31/addic7ed-api](https://github.com/same31/addic7ed-api) | JavaScript | search by show + season + episode (TV **and** movies), completed-only filter, ISO 639-2/B language codes, hearing-impaired/corrected/download-count metadata, distribution + team extraction, `get_show_titles`, encoding fallback |
 
-It ships both a Python library and a CLI (`addic7ed`) with JSON output, designed so an
-[mpv](https://mpv.io) Lua script (or any other program) can call it via `subprocess`.
+It ships both a Python library and a CLI (`addic7ed`, alias `pyaddic7`) with
+JSON output, designed so an [mpv](https://mpv.io) Lua script (or any other
+program) can call it via `subprocess`.
 
-As addic7ed.com does not provide an official API, this package scrapes the public
-HTML pages and is **not affiliated with addic7ed.com**. Use it respectfully.
+As addic7ed.com does not provide an official API, this package scrapes the
+public HTML pages and is **not affiliated with addic7ed.com**. Use it
+respectfully.
 
 ## Features
 
@@ -37,7 +52,7 @@ HTML pages and is **not affiliated with addic7ed.com**. Use it respectfully.
 ## Installation
 
 ```bash
-pip install pyaddic7ed
+pip install pyaddic7
 ```
 
 Requires Python 3.9+ and only `requests` + `beautifulsoup4`.
@@ -47,7 +62,7 @@ Requires Python 3.9+ and only `requests` + `beautifulsoup4`.
 ### Search by show, season and episode (TV or movie)
 
 ```python
-from pyaddic7ed import search, download
+from pyaddic7 import search, download
 
 # TV show (season/episode are optional)
 subs = search("South Park", season=25, episode=4)          # completed subs only
@@ -66,7 +81,7 @@ if subs:
 ### Search by video file name
 
 ```python
-from pyaddic7ed import search_by_filename
+from pyaddic7 import search_by_filename
 
 show = search_by_filename("South.Park.S25E04.720p.WEB.h264-BAE")
 print(show.name)          # "South Park - 25x04 - Back to the Cold War"
@@ -77,7 +92,7 @@ for sub in show.subtitles:
 ### Best subtitle for a file name
 
 ```python
-from pyaddic7ed import search_best
+from pyaddic7 import search_best
 
 show_name, sub = search_best("South.Park.S25E04.720p.WEB.h264-BAE", "English")
 print(show_name, sub.version)
@@ -87,7 +102,7 @@ sub.download_to("South.Park.S25E04.srt")     # needs the default client
 or with one client instance (recommended: reuses the connection):
 
 ```python
-from pyaddic7ed import Addic7edClient
+from pyaddic7 import Addic7edClient
 
 client = Addic7edClient(verbose=True)
 show_name, sub = client.search_best("South.Park.S25E04.720p.WEB.h264-BAE", "English")
@@ -100,8 +115,8 @@ data = client.download_subtitle(sub)
 ### Filters and grouping
 
 ```python
-from pyaddic7ed import search_by_filename, with_language, with_version_regexp
-from pyaddic7ed import filter_subtitles, group_by_version
+from pyaddic7 import search_by_filename, with_language, with_version_regexp
+from pyaddic7 import filter_subtitles, group_by_version
 
 show = search_by_filename("Dark.S01E05.720p.WEBRip.x264-STRiFE")
 
@@ -113,7 +128,7 @@ by_version = group_by_version(show.subtitles)
 ### Show titles
 
 ```python
-from pyaddic7ed import get_show_titles
+from pyaddic7 import get_show_titles
 
 titles = get_show_titles()
 assert "South Park" in titles
@@ -140,8 +155,10 @@ assert "South Park" in titles
 
 ## CLI usage
 
+Both commands are identical; pick whichever you like:
+
 ```
-addic7ed titles [--json]
+addic7ed (or pyaddic7) titles [--json]
 addic7ed search SHOW [-s SEASON] [-e EPISODE] [-l eng,fre] [--include-incomplete] [--json]
 addic7ed filename FILE [--json]
 addic7ed best FILE -l English|eng [-o out.srt] [--json]
@@ -155,8 +172,8 @@ Examples:
 ```bash
 addic7ed best "South.Park.S25E04.720p.WEB.h264-BAE" -l eng -o South.Park.S25E04.srt
 addic7ed search "South Park" -s 25 -e 4 --json
-addic7ed filename "Dark.S01E05.720p.WEBRip.x264-STRiFE" --json
-addic7ed download /original/173311/1 -o sub.srt
+pyaddic7 filename "Dark.S01E05.720p.WEBRip.x264-STRiFE" --json
+pyaddic7 download /original/173311/1 -o sub.srt
 addic7ed titles | head -5
 ```
 
@@ -186,7 +203,7 @@ end)
 ## Development and testing
 
 ```bash
-git clone <your fork> && cd pyaddic7ed
+git clone https://github.com/Mackeos/PyAddic7 && cd PyAddic7
 pip install -e ".[dev]"
 
 pytest -m "not live"   # offline tests (saved HTML fixtures, no network)
@@ -203,8 +220,15 @@ real episodes and download one real subtitle file.
 ```bash
 python -m build
 python -m twine check dist/*
+python -m twine check compat/pyaddic7ed/dist/*   # compatibility alias distribution
 python -m twine upload dist/*
+python -m twine upload compat/pyaddic7ed/dist/*
 ```
+
+## Support
+
+If PyAddic7 saves you time, consider supporting its development —
+cryptocurrency addresses are listed in [DONATIONS.md](DONATIONS.md).
 
 ## License and credits
 

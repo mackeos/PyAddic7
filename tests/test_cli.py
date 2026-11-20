@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-import pyaddic7ed.cli as cli
-from pyaddic7ed.models import Show, Subtitle
+import pyaddic7.cli as cli
+from pyaddic7.models import Show, Subtitle
 
 FAKE_SRT = b"1\n00:00:01,000 --> 00:00:03,000\nHello!\n"
 
@@ -153,7 +153,7 @@ def test_no_command_shows_help(capsys):
 
 
 def test_not_found_exit_code(monkeypatch, capsys):
-    from pyaddic7ed.exceptions import ShowNotFoundError
+    from pyaddic7.exceptions import ShowNotFoundError
 
     class EmptyClient:
         def get_show_titles(self):
@@ -165,7 +165,7 @@ def test_not_found_exit_code(monkeypatch, capsys):
 
 
 def test_error_exit_code(monkeypatch, capsys):
-    from pyaddic7ed.exceptions import NetworkError
+    from pyaddic7.exceptions import NetworkError
 
     class BrokenClient:
         def get_show_titles(self):

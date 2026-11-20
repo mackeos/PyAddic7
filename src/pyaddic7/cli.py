@@ -1,4 +1,4 @@
-"""Command line interface for pyaddic7ed.
+"""Command line interface for PyAddic7.
 
 Designed so other programs (e.g. an mpv Lua script through ``subprocess``)
 can consume results: every command accepts ``--json`` and uses stable exit

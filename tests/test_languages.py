@@ -1,6 +1,6 @@
 import pytest
 
-from pyaddic7ed.languages import iso639_2b_to_names, lang_to_iso639_2b
+from pyaddic7.languages import iso639_2b_to_names, lang_to_iso639_2b
 
 
 @pytest.mark.parametrize(

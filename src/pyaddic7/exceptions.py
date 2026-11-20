@@ -1,8 +1,8 @@
-"""Exceptions raised by pyaddic7ed."""
+"""Exceptions raised by PyAddic7."""
 
 
 class Addic7edError(Exception):
-    """Base class for all pyaddic7ed errors."""
+    """Base class for all PyAddic7 errors."""
 
 
 class NetworkError(Addic7edError):

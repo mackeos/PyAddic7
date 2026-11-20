@@ -36,7 +36,7 @@ from .parsing import (
 )
 from .scoring import pick_best_subtitle, score_versions
 
-logger = logging.getLogger("pyaddic7ed")
+logger = logging.getLogger("pyaddic7")
 
 DEFAULT_USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "

@@ -3,7 +3,7 @@
 Direct port of example.mjs from same31/addic7ed-api.
 """
 
-from pyaddic7ed import download, get_show_titles, search
+from pyaddic7 import download, get_show_titles, search
 
 print("Searching all show titles...")
 show_titles = get_show_titles()

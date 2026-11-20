@@ -3,7 +3,7 @@
 Direct port of the SearchBest example from matcornic/addic7ed.
 """
 
-from pyaddic7ed import Addic7edClient
+from pyaddic7 import Addic7edClient
 
 client = Addic7edClient()
 

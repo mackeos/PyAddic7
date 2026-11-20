@@ -2,15 +2,15 @@
 
 import pytest
 
-import pyaddic7ed
-from pyaddic7ed.client import (
+import pyaddic7
+from pyaddic7.client import (
     Addic7edClient,
     _looks_like_html,
     _normalize_subtitle_bytes,
     format_show_number,
     resolve_language,
 )
-from pyaddic7ed.exceptions import (
+from pyaddic7.exceptions import (
     DownloadError,
     NetworkError,
     NoSubtitleFoundError,
@@ -298,7 +298,7 @@ def test_download_falls_back_to_link_referer_when_html():
 
     client = Addic7edClient()
     client.session = FlakySession()
-    from pyaddic7ed.models import Subtitle
+    from pyaddic7.models import Subtitle
 
     sub = Subtitle(version="V", language="English", link="/original/2/1", referer="/show/9")
     data = client.download_subtitle(sub)
@@ -315,7 +315,7 @@ def test_download_error_when_both_attempts_return_html():
 
     client = Addic7edClient()
     client.session = AlwaysHtmlSession()
-    from pyaddic7ed.models import Subtitle
+    from pyaddic7.models import Subtitle
 
     sub = Subtitle(version="V", language="English", link="/original/3/1", referer="/show/9")
     with pytest.raises(DownloadError):
@@ -356,6 +356,6 @@ def test_default_module_level_api(monkeypatch):
         "serie/South_Park/25/4": FakeResponse(read_fixture("episode_south_park.html")),
     }
     client = make_client(routes)
-    monkeypatch.setattr(pyaddic7ed, "_DEFAULT_CLIENT", client)
-    subs = pyaddic7ed.search("South Park", season=25, episode=4)
+    monkeypatch.setattr(pyaddic7, "_DEFAULT_CLIENT", client)
+    subs = pyaddic7.search("South Park", season=25, episode=4)
     assert len(subs) == 6

@@ -1,7 +1,7 @@
 import pytest
 
-from pyaddic7ed.models import Subtitle
-from pyaddic7ed.scoring import (
+from pyaddic7.models import Subtitle
+from pyaddic7.scoring import (
     jaro,
     jaro_winkler,
     jaro_with_prefix,

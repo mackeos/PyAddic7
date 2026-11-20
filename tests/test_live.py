@@ -6,7 +6,7 @@ Deselect with:  pytest -m "not live"
 
 import pytest
 
-from pyaddic7ed.client import Addic7edClient
+from pyaddic7.client import Addic7edClient
 
 pytestmark = pytest.mark.live
 

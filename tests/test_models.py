@@ -1,6 +1,6 @@
 import pytest
 
-from pyaddic7ed.models import (
+from pyaddic7.models import (
     Subtitle,
     filter_subtitles,
     group_by_language,

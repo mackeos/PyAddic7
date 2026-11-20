@@ -3,18 +3,20 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pyaddic7ed"
+name = "pyaddic7"
 version = "0.1.0"
-description = "Python API to search and download subtitles from addic7ed.com - full-featured port of matcornic/addic7ed (Go) and same31/addic7ed-api (JavaScript)"
+description = "PyAddic7 (formerly pyaddic7ed) - Python API to search and download subtitles from addic7ed.com - port of matcornic/addic7ed (Go) and same31/addic7ed-api (JavaScript)"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { file = "LICENSE" }
 authors = [
-    { name = "pyaddic7ed developers" },
+    { name = "PyAddic7 developers" },
 ]
 keywords = [
     "addic7ed",
     "addic7ed.com",
+    "pyaddic7",
+    "pyaddic7ed",
     "subtitles",
     "subtitle-downloader",
     "srt",
@@ -44,13 +46,14 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Mackeos/pyaddic7ed"
-Documentation = "https://github.com/Mackeos/pyaddic7ed#readme"
-Source = "https://github.com/Mackeos/pyaddic7ed"
-Issues = "https://github.com/Mackeos/pyaddic7ed/issues"
+Homepage = "https://github.com/Mackeos/PyAddic7"
+Documentation = "https://github.com/Mackeos/PyAddic7#readme"
+Source = "https://github.com/Mackeos/PyAddic7"
+Issues = "https://github.com/Mackeos/PyAddic7/issues"
 
 [project.scripts]
-addic7ed = "pyaddic7ed.cli:main"
+addic7ed = "pyaddic7.cli:main"
+pyaddic7 = "pyaddic7.cli:main"
 
 [project.optional-dependencies]
 dev = [
@@ -62,6 +65,7 @@ dev = [
 where = ["src"]
 
 [tool.setuptools.package-data]
+pyaddic7 = ["py.typed"]
 pyaddic7ed = ["py.typed"]
 
 [tool.pytest.ini_options]

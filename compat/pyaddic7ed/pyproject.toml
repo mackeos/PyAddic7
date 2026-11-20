@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyaddic7ed"
+version = "0.1.0"
+description = "Compatibility alias for PyAddic7 - the addic7ed.com subtitle API for Python is now published as 'pyaddic7'"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "PyAddic7 developers" },
+]
+keywords = [
+    "addic7ed",
+    "addic7ed.com",
+    "pyaddic7",
+    "pyaddic7ed",
+    "subtitles",
+    "srt",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video",
+]
+dependencies = [
+    "pyaddic7>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Mackeos/PyAddic7"
+Documentation = "https://github.com/Mackeos/PyAddic7#readme"
+Source = "https://github.com/Mackeos/PyAddic7"
+Issues = "https://github.com/Mackeos/PyAddic7/issues"
+
+# The real code, CLI and both import names (pyaddic7 / pyaddic7ed) are
+# provided by the pyaddic7 distribution; this alias ships metadata only.
+[tool.setuptools]
+py-modules = []
