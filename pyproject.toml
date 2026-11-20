@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyaddic7ed"
+version = "0.1.0"
+description = "Python API to search and download subtitles from addic7ed.com - full-featured port of matcornic/addic7ed (Go) and same31/addic7ed-api (JavaScript)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name = "pyaddic7ed developers" },
+]
+keywords = [
+    "addic7ed",
+    "addic7ed.com",
+    "subtitles",
+    "subtitle-downloader",
+    "srt",
+    "mpv",
+    "api",
+    "scraper",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Text Processing :: Linguistic",
+    "Typing :: Typed",
+]
+dependencies = [
+    "requests>=2.25",
+    "beautifulsoup4>=4.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/Mackeos/pyaddic7ed"
+Documentation = "https://github.com/Mackeos/pyaddic7ed#readme"
+Source = "https://github.com/Mackeos/pyaddic7ed"
+Issues = "https://github.com/Mackeos/pyaddic7ed/issues"
+
+[project.scripts]
+addic7ed = "pyaddic7ed.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "build>=1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pyaddic7ed = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: tests that hit the real addic7ed.com site (deselect with '-m \"not live\"')",
+]
